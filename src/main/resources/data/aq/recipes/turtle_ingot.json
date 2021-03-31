@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:scute"
+    },
+    {
+      "item":"minecraft:prismarine_crystals"
+    }
+  ],
+  "result":
+  {
+    "item": "aq:turtle_ingot",
+    "count": 1
+  }
+}

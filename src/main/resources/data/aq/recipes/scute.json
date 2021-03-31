@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "aq:scute_block"
+    }
+  ],
+  "result":
+  {
+    "item": "minecraft:scute",
+    "count": 4
+  }
+}

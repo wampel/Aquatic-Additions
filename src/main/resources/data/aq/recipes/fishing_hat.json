@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xsx",
+    " c "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:leather"
+    },
+    "s": {
+      "item": "minecraft:diamond"
+    },
+    "c": {
+      "item": "minecraft:cod"
+    }
+  },
+  "result": {
+    "item": "aq:fishing_hat",
+    "count": 1
+  }
+}

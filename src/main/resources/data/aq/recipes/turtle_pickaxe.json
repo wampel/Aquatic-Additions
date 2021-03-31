@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    " C ",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "aq:turtle_ingot"
+    }
+  },
+  "result": {
+    "item": "aq:turtle_pickaxe"
+  }
+}

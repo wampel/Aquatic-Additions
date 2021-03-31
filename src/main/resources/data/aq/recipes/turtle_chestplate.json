@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XHX",
+    "XXX"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:conduit"
+    },
+    "X": {
+      "item": "aq:turtle_ingot"
+    }
+  },
+  "result": {
+    "item": "aq:turtle_chestplate"
+  }
+}

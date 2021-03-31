@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "quality": 1,
+          "name": "minecraft:cod"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "quality": 2,
+          "name": "aq:dolphin_finn"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 40,
+          "quality": 1,
+          "name": "aq:raw_dolphin_meat"
+        }
+      ]
+    }
+  ]
+}

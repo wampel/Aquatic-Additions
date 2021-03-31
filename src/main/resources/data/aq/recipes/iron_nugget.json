@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "aq:iron_fish"
+  },
+  "result": "minecraft:iron_nugget",
+  "experience": 1.0,
+  "cookingtime": 200
+}

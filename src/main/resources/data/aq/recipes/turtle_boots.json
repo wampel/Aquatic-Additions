@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "X X",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "aq:turtle_ingot"
+    },
+    "Y": {
+      "item": "aq:dolphin_finn"
+    }
+  },
+  "result": {
+    "item": "aq:turtle_boots"
+  }
+}

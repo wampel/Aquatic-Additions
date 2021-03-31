@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx ",
+    "xx ",
+    "   "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:scute"
+    }
+  },
+  "result":
+  {
+    "item": "aq:scute_block",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "aq:raw_dolphin_meat"
+  },
+  "result": "aq:cooked_dolphin_meat",
+  "experience": 1.0,
+  "cookingtime": 200
+}
