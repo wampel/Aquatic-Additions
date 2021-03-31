@@ -1,4 +1,4 @@
-THIS IS A MINECRAFT FORGE MOD
+THIS IS A MINECRAFT FORGE 1.16.5 MOD
 
 Aquatic Additions expands the vanilla ocean content.
 
