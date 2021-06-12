@@ -33,10 +33,13 @@ public class Turtlecraft {
 
     //TAB
     public static final ItemGroup TAB = new ItemGroup("aquatic") {
-
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(RegistryHandler.TURTLE_CHESTPLATE.get());
         }
+
+
+        //@Override
+        //public ItemStack createIcon() { return new ItemStack(RegistryHandler.TURTLE_CHESTPLATE.get()); }
     };
 }

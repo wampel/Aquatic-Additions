@@ -8,11 +8,9 @@ public class ScuteBlock extends Block {
 
 
     public ScuteBlock() {
-        super(AbstractBlock.Properties.create(Material.IRON)
+        super(AbstractBlock.Properties.of(Material.NETHER_WOOD)
                 .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(1)
-                .hardnessAndResistance(10F,10F))
-                ;
+                .harvestLevel(1));
     }
 
 

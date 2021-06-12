@@ -9,6 +9,6 @@ public class BlockItemBase extends BlockItem {
 
     public BlockItemBase(Block block) {
 
-        super(block, new Item.Properties().group(Turtlecraft.TAB));
+        super(block, new Item.Properties().tab(Turtlecraft.TAB));
     }
 }

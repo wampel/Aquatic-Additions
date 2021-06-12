@@ -17,20 +17,19 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.antlr.v4.runtime.LexerNoViableAltException;
-import sun.security.mscapi.CPublicKey;
 
 @Mod.EventBusSubscriber(modid = Turtlecraft.MOD_ID, bus= Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ModClientEvents {
     //Schwert
     @SubscribeEvent
     public static void boxer(AttackEntityEvent event) {
-        if (event.getEntityLiving().getHeldItemMainhand().getItem() == RegistryHandler.TURTLE_SWORD.get()) {
+        if (event.getEntityLiving().getMainHandItem().getItem() == RegistryHandler.TURTLE_SWORD.get()) {
             if (event.getTarget().isAlive()) {
 
                 PlayerEntity player = event.getPlayer();
                 LivingEntity target = (LivingEntity) event.getTarget();
 
-                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 3 * 20, 1));
+                target.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 3 * 20, 1));
             }
         }
     }
@@ -40,17 +39,17 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void conduitPowerWhileWearingTurtleArmor(LivingEquipmentChangeEvent event) {
         LivingEntity player = event.getEntityLiving();
-        ItemStack chestStack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.CHEST);
-        ItemStack headstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
-        ItemStack footstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.FEET);
-        ItemStack legstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.LEGS);
+        ItemStack chestStack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack headstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack footstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.FEET);
+        ItemStack legstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.LEGS);
         if (chestStack.getItem() == RegistryHandler.TURTLE_CHESTPLATE.get()) {
             if (headstack.getItem() == RegistryHandler.TURTLE_HELMET.get()) {
                 if (footstack.getItem() == RegistryHandler.TURTLE_BOOTS.get()) {
                     if (legstack.getItem() == RegistryHandler.TURTLE_LEGGINS.get()) {
-                        player.addPotionEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 1000000 * 20, 0));
-                        player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 1000000 * 20, 0));
-                        player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 100000*20,0));
+                        player.addEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 1000000 * 20, 0));
+                        player.addEffect(new EffectInstance(Effects.CONDUIT_POWER, 1000000 * 20, 0));
+                        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100000*20,0));
                     }
                 }
             }
@@ -59,23 +58,30 @@ public class ModClientEvents {
 
     @SubscribeEvent
     public static void turtleArmorRemoveEfeect(LivingEquipmentChangeEvent event) {
-        ItemStack cheststack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.CHEST);
-        ItemStack headstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
-        ItemStack legstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.LEGS);
-        ItemStack footstack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.FEET);
+        ItemStack cheststack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack headstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack legstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.LEGS);
+        ItemStack footstack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.FEET);
         LivingEntity player = event.getEntityLiving();
-        if (player.isPotionActive(Effects.CONDUIT_POWER)) {
+        if (player.hasEffect(Effects.CONDUIT_POWER)) {
             if (!cheststack.getItem().equals(RegistryHandler.TURTLE_CHESTPLATE.get())) {
-                player.clearActivePotions();
+                player.removeEffect(Effects.CONDUIT_POWER);
+                player.removeEffect(Effects.DOLPHINS_GRACE);
+                player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
             }
             if (!headstack.getItem().equals(RegistryHandler.TURTLE_HELMET.get())) {
-                player.clearActivePotions();
-            }
+                player.removeEffect(Effects.CONDUIT_POWER);
+                player.removeEffect(Effects.DOLPHINS_GRACE);
+                player.removeEffect(Effects.MOVEMENT_SLOWDOWN);         }
             if (!legstack.getItem().equals(RegistryHandler.TURTLE_LEGGINS.get())) {
-                player.clearActivePotions();
+                player.removeEffect(Effects.CONDUIT_POWER);
+                player.removeEffect(Effects.DOLPHINS_GRACE);
+                player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
             }
             if (!footstack.getItem().equals(RegistryHandler.TURTLE_BOOTS.get())) {
-                player.clearActivePotions();
+                player.removeEffect(Effects.CONDUIT_POWER);
+                player.removeEffect(Effects.DOLPHINS_GRACE);
+                player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
             }
         }
     }
@@ -83,19 +89,18 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void sneakingEffect(TickEvent.PlayerTickEvent event) {
         LivingEntity player = event.player;
-        float playerHeight = event.player.getHeight();
-        ItemStack chestStack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
-        ItemStack headStack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        ItemStack legStack = event.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
-        ItemStack footStack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
+        ItemStack chestStack = event.player.getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack headStack = event.player.getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack legStack = event.player.getItemBySlot(EquipmentSlotType.LEGS);
+        ItemStack footStack = event.player.getItemBySlot(EquipmentSlotType.FEET);
 
         if (chestStack.getItem() == RegistryHandler.VTURTLE_CHESTPLATE.get()) {
             if (headStack.getItem() == Items.TURTLE_HELMET) {
                 if (footStack.getItem() == RegistryHandler.VTURTLE_BOOTS.get()) {
                     if (legStack.getItem() == RegistryHandler.VTURTLE_LEGGINS.get()) {
-                        if (playerHeight == 1.5) {
-                            player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 1, 3));
-                            player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 1, 4));
+                        if (player.isCrouching()) {
+                            player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE, 1, 3));
+                            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 1, 4));
                         }
                     }
                 }
@@ -107,10 +112,10 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void luckWhenWearingBucketHatAndUsingFishingRod(LivingEquipmentChangeEvent event) {
         LivingEntity player = event.getEntityLiving();
-        ItemStack headStack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
+        ItemStack headStack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD);
         if (headStack.getItem() == RegistryHandler.FISH_HELMET.get()) {
-            if (event.getEntityLiving().getHeldItemMainhand().getItem() == Items.FISHING_ROD) {
-                player.addPotionEffect(new EffectInstance(Effects.LUCK, 100000000 * 20, 0));
+            if (event.getEntityLiving().getMainHandItem().getItem() == Items.FISHING_ROD) {
+                player.addEffect(new EffectInstance(Effects.LUCK, 100000000 * 20, 0));
             }
         }
     }
@@ -118,11 +123,11 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void luckWegenhmen(LivingEquipmentChangeEvent event) {
         LivingEntity player = event.getEntityLiving();
-        ItemStack headStack = event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.HEAD);
-        if (player.isPotionActive(Effects.LUCK)) {
+        ItemStack headStack = event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD);
+        if (player.hasEffect(Effects.LUCK)) {
             if (!headStack.getItem().equals(RegistryHandler.FISH_HELMET.get())) {
-                if (!player.getHeldItemMainhand().equals(Items.FISHING_ROD)) {
-                    player.clearActivePotions();
+                if (!player.getMainHandItem().equals(Items.FISHING_ROD)) {
+                    player.removeEffect(Effects.LUCK);
                 }
             }
         }

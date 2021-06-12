@@ -17,7 +17,7 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
-
+/*
 public class PrismarinePillar extends Block {
 
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
@@ -225,3 +225,5 @@ public class PrismarinePillar extends Block {
         return 0.6f;
     }
 }
+
+ */

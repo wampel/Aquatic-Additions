@@ -6,11 +6,10 @@ import net.minecraft.item.Item;
 
 public class GoldenFish extends Item {
     public GoldenFish() {
-        super(new Item.Properties().group(Turtlecraft.TAB)
+        super(new Item.Properties().tab(Turtlecraft.TAB)
         .food
                 (new Food.Builder()
-                        .hunger(6)
-                        .saturation(14.4F)
+                .nutrition(10)
                         .build()));
     }
 }

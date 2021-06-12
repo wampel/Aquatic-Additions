@@ -15,14 +15,14 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 
-    TURTLE(Turtlecraft.MOD_ID + ":turtle", 22, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1, 0.3F, () -> {
-        return Ingredient.fromItems(RegistryHandler.TURTLE_INGOT.get());
+    TURTLE(Turtlecraft.MOD_ID + ":turtle", 22, new int[]{3, 6, 8, 3}, 12, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0.3F, () -> {
+        return Ingredient.of(RegistryHandler.TURTLE_INGOT.get());
     }),
-    TURTLEV(Turtlecraft.MOD_ID + ":turtlev", 22, new int[]{2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0, 0.1F,() -> {
-        return Ingredient.fromItems(Items.SCUTE);
+    TURTLEV(Turtlecraft.MOD_ID + ":turtlev", 22, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_TURTLE, 0, 0.1F,() -> {
+        return Ingredient.of(Items.SCUTE);
     }),
-    FISH(Turtlecraft.MOD_ID + ":fish", 22, new int[]{2, 5, 6, 1}, 10, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 1, 0, () -> {
-        return Ingredient.fromItems(RegistryHandler.TURTLE_INGOT.get());
+    FISH(Turtlecraft.MOD_ID + ":fish", 22, new int[]{2, 5, 6, 1}, 10, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0, () -> {
+        return Ingredient.of(RegistryHandler.TURTLE_INGOT.get());
     });
 
 
@@ -49,29 +49,29 @@ public enum ModArmorMaterial implements IArmorMaterial {
         this.knockbackRessistance = knockbackRessistance;
     }
 
-        @Override
-        public int getDurability (EquipmentSlotType slotIn){
-            return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
-        }
 
-
-        @Override
-        public int getDamageReductionAmount (EquipmentSlotType slotIn){
-            return this.damageReductionArray[slotIn.getIndex()];
+         @Override
+        public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
+            return MAX_DAMAGE_ARRAY[ p_200896_1_.getIndex()] * this.maxDamageFactor;
         }
 
         @Override
-        public int getEnchantability () {
+        public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
+            return this.damageReductionArray[p_200902_1_.getIndex()];
+        }
+
+        @Override
+        public int getEnchantmentValue () {
             return this.enchantability;
         }
 
         @Override
-        public SoundEvent getSoundEvent () {
+        public SoundEvent getEquipSound() {
             return this.soundEvent;
         }
 
         @Override
-        public Ingredient getRepairMaterial () {
+        public Ingredient getRepairIngredient() {
             return this.repairMaterial.get();
         }
 

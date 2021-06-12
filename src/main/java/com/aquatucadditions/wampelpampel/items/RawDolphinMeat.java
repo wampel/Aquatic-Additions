@@ -6,11 +6,10 @@ import net.minecraft.item.Item;
 
 public class RawDolphinMeat extends Item {
     public RawDolphinMeat() {
-        super(new Item.Properties().group(Turtlecraft.TAB)
+        super(new Item.Properties().tab(Turtlecraft.TAB)
                 .food(new Food.Builder()
-                .hunger(2)
-                    .saturation(2)
-                        .build()
+                .nutrition(2)
+                                .build()
                 ));
     }
 }

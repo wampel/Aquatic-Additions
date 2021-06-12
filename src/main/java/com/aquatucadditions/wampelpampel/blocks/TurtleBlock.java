@@ -10,8 +10,7 @@ public class TurtleBlock extends Block {
 
     public TurtleBlock() {
 
-        super(AbstractBlock.Properties.create(Material.IRON)
-            .hardnessAndResistance(5.0f, 1.0f)
+        super(Properties.of(Material.METAL)
                 .sound(SoundType.METAL)
                 .harvestLevel(2)
                 .harvestTool(ToolType.PICKAXE)
