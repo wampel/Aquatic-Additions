@@ -1,4 +1,5 @@
-package com.aquatucadditions.wampelpampel.items.tools;
+/*
+package com.wampelpampel.aquaticadditions.items.tools;
 
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
@@ -36,3 +37,4 @@ public enum ModTier implements IItemTier {
         return null;
     }
 }
+*/

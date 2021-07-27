@@ -1,27 +1,25 @@
-package com.aquatucadditions.wampelpampel.armor;
+package com.wampelpampel.aquaticadditions.armor;
 
-import com.aquatucadditions.wampelpampel.Turtlecraft;
-import com.aquatucadditions.wampelpampel.util.RegistryHandler;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import com.wampelpampel.aquaticadditions.AquaticAdditions;
+import com.wampelpampel.aquaticadditions.util.RegistryHandler;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum ModArmorMaterial implements IArmorMaterial {
+public enum ModArmorMaterial implements ArmorMaterial {
 
-    TURTLE(Turtlecraft.MOD_ID + ":turtle", 22, new int[]{3, 6, 8, 3}, 12, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0.3F, () -> {
+    TURTLE(AquaticAdditions.MOD_ID + ":turtle", 22, new int[]{3, 6, 8, 3}, 12, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0.3F, () -> {
         return Ingredient.of(RegistryHandler.TURTLE_INGOT.get());
     }),
-    TURTLEV(Turtlecraft.MOD_ID + ":turtlev", 22, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_TURTLE, 0, 0.1F,() -> {
+    TURTLEV(AquaticAdditions.MOD_ID + ":turtlev", 22, new int[]{2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_TURTLE, 0, 0.1F,() -> {
         return Ingredient.of(Items.SCUTE);
     }),
-    FISH(Turtlecraft.MOD_ID + ":fish", 22, new int[]{2, 5, 6, 1}, 10, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0, () -> {
+    FISH(AquaticAdditions.MOD_ID + ":fish", 22, new int[]{2, 5, 6, 1}, 10, SoundEvents.ARMOR_EQUIP_TURTLE, 1, 0, () -> {
         return Ingredient.of(RegistryHandler.TURTLE_INGOT.get());
     });
 
@@ -49,18 +47,17 @@ public enum ModArmorMaterial implements IArmorMaterial {
         this.knockbackRessistance = knockbackRessistance;
     }
 
+    @Override
+    public int getDurabilityForSlot(EquipmentSlot equipmentSlot) {
+        return MAX_DAMAGE_ARRAY[equipmentSlot.getIndex()] * this.maxDamageFactor;
+    }
 
-         @Override
-        public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
-            return MAX_DAMAGE_ARRAY[ p_200896_1_.getIndex()] * this.maxDamageFactor;
-        }
+    @Override
+    public int getDefenseForSlot(EquipmentSlot equipmentSlot) {
+        return this.damageReductionArray[equipmentSlot.getIndex()];
+    }
 
-        @Override
-        public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
-            return this.damageReductionArray[p_200902_1_.getIndex()];
-        }
-
-        @Override
+    @Override
         public int getEnchantmentValue () {
             return this.enchantability;
         }

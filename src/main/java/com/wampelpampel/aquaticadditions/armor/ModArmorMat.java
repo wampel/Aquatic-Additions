@@ -1,9 +1,5 @@
-package com.aquatucadditions.wampelpampel.armor;
+package com.wampelpampel.aquaticadditions.armor;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.SoundEvent;
 /*
 public enum ModArmorMat implements IArmorMaterial {
     ;

@@ -1,12 +1,12 @@
-package com.aquatucadditions.wampelpampel.items.tools;
+package com.wampelpampel.aquaticadditions.items.tools;
 
-import com.aquatucadditions.wampelpampel.util.RegistryHandler;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
+import com.wampelpampel.aquaticadditions.util.RegistryHandler;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum ModItemTier implements IItemTier {
+public enum ModItemTier implements Tier {
 
     TURTLE(3, 1756, 6, 3, 10, () -> {
         return Ingredient.of(RegistryHandler.TURTLE_SWORD.get());
