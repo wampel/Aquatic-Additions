@@ -1,4 +1,4 @@
-# Aquatic Additions expands the vanilla ocean content.  #
+# Aquatic Additions expands the vanilla ocean content.
 
 Content:
 
