@@ -1,5 +1,5 @@
 
-# Aquatic Additions expands the vanilla ocean content.
+# Aquatic Additions
 
 - Turtle Armor: Gives dolphins grace and conduit power while wearing. As good as diamond, but has lower armor toughness and +3 knockback resistance.
         Scute turtle armor: A completion of the vanilla turtle armor. When you sneak you go in your turtle shell and get ressistance and slowness.
